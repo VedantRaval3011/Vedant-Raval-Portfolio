@@ -5,43 +5,46 @@ import Link from "next/link";
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
+import MechvaccPage from "@/assets/images/Mechvacc.png";
+import NaturalistPage from "@/assets/images/naturalist.png";
+import IsroPage from "@/assets/images/isro.png";
 
 const portfolioProjects = [
   {
-    company: "Acme Corp",
-    year: "2022",
-    title: "Dark Saas Landing Page",
+    company: "Mechvacc",
+    year: "2024",
+    title: "Mechvacc Industries Official Website",
     results: [
       { title: "Enhanced user experience by 40%" },
       { title: "Improved site speed by 50%" },
       { title: "Increased mobile traffic by 35%" },
     ],
     link: "https://youtu.be/4k7IdSLxh6w",
-    image: darkSaasLandingPage,
+    image: MechvaccPage,
   },
   {
-    company: "Innovative Co",
-    year: "2021",
-    title: "Light Saas Landing Page",
-    results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
-    ],
-    link: "https://youtu.be/7hi5zwO75yc",
-    image: lightSaasLandingPage,
-  },
-  {
-    company: "Quantum Dynamics",
-    year: "2023",
-    title: "AI Startup Landing Page",
+    company: "ISRO-SAC",
+    year: "2024",
+    title: "Raster Interactive Data Management System (RIDaM)",
     results: [
       { title: "Enhanced user experience by 40%" },
       { title: "Improved site speed by 50%" },
       { title: "Increased mobile traffic by 35%" },
     ],
     link: "https://youtu.be/Z7I5uSRHMHg",
-    image: aiStartupLandingPage,
+    image: IsroPage,
+  },
+  {
+    company: "Naturalist",
+    year: "2024",
+    title: "Naturalist Animated Landing Page",
+    results: [
+      { title: "Boosted sales by 20%" },
+      { title: "Expanded customer reach by 35%" },
+      { title: "Increased brand awareness by 15%" },
+    ],
+    link: "https://youtu.be/7hi5zwO75yc",
+    image: NaturalistPage,
   },
 ];
 

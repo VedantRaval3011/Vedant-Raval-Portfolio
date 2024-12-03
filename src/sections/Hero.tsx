@@ -1,5 +1,6 @@
 import Image from "next/image";
 import memojiImage from "@/assets/images/memoji-computer.png";
+import RobotImage from "@/assets/images/robot.png";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
@@ -52,11 +53,11 @@ export const HeroSection = () => {
       <div className="container">
         <div className="flex flex-col items-center">
           <Image
-            src={memojiImage}
+            src={RobotImage}
             alt="Hero person"
-            className="size-[100px] "
+            className="size-[100px] shadow-lg rounded-full mb-1 bg-gradient-to-r from-emerald-300 to-sky-400"
           />
-          <div className="bg-gray-950 border-gray-800 px-4 py-1.5 inline-flex  items-center gap-4 rounded-lg">
+          <div className="bg-gray-950 border-gray-800 px-4 py-1.5 inline-flex z-20  items-center gap-4 rounded-lg">
             <div className="bg-green-500 size-2.5 rounded-full"></div>
             <div className="text-sm font-semibold">
               Available for new projects
