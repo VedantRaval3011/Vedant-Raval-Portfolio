@@ -9,15 +9,15 @@ import { motion, useInView } from "framer-motion";
 
 const SocialMediaItems = [
   {
-    link: "#",
+    link: "https://github.com/VedantRaval3011",
     iconType: GithubIcon,
   },
   {
-    link: "#",
+    link: "https://www.linkedin.com/in/vedant-raval-69967320a/",
     iconType: LinkedInIcon,
   },
   {
-    link: "#",
+    link: "mailto:vedantraval333@gmail.com",
     iconType: GmailIcon,
   },
 ];
@@ -37,7 +37,7 @@ const ConnectWithMe = () => {
       <div className=" bg-gradient-to-r from-emerald-300 to-sky-400 p-6 text-gray-800 rounded-xl md:flex md:justify-between">
         <div>
           <h1 className="font-serif text-xl text-center md:text-left md:text-2xl lg:text-3xl">
-            Let's Collaborate!
+            Let&apos;s Collaborate!
           </h1>
           <p className="text-md text-center md:text-left max-w-96 lg:text-lg lg:max-w-[35rem] lg:mt-2">
             Feel free to connect with me for job opportunities, freelance

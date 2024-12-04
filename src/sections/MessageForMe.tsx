@@ -70,7 +70,7 @@ const MessageForMe = () => {
       <Card className="lg:flex">
         <div className="text-center lg:text-left">
           <CardHeader
-            title="Let's Talk"
+            title="Let&apos;s Talk"
             description="Have something to share? Drop me a message, and I'll get back to you
           as soon as possible!"
             className="lg:items-start"
