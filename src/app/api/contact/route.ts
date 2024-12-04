@@ -23,13 +23,21 @@ const generateEmailTemplate = (email:string, message:string) => {
         </div>
       `;
   };
-
-export async function POST(req: Request){
-    const {email, message} = await req.json();
+  export async function POST(req: Request) {
+    const { email, message } = await req.json();
     const EMAIL = process.env.EMAIL_ADMIN;
     const PASSCODE = process.env.EMAIL_ADMIN_PASS;
 
-    if(!email || !message){
+    // Detailed environment variable check
+    if (!EMAIL || !PASSCODE) {
+        console.error('Missing email configuration');
+        return NextResponse.json(
+            { message: "Email configuration is incomplete" },
+            { status: 500 }
+        );
+    }
+
+    if (!email || !message) {
         return NextResponse.json(
             { message: "All fields are required" },
             { status: 400 }
@@ -38,25 +46,45 @@ export async function POST(req: Request){
 
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // Use TLS
             auth: {
-              user: EMAIL,
-              pass: PASSCODE,
+                user: EMAIL,
+                pass: PASSCODE,
             },
-        })
+            // Add this to resolve potential connection issues
+            tls: {
+                rejectUnauthorized: false
+            }
+        });
+
+        // Validate transporter connection
+        await new Promise((resolve, reject) => {
+            transporter.verify((error, success) => {
+                if (error) {
+                    console.error('SMTP Connection Error:', error);
+                    reject(error);
+                } else {
+                    resolve(success);
+                }
+            });
+        });
 
         await transporter.sendMail({
-            from: email,
-            to: process.env.EMAIL_ADMIN,
+            from: EMAIL, // Use your admin email as the sender
+            to: EMAIL,   // Send to the same admin email
+            replyTo: email, // Set the reply-to as the sender's email
             subject: "New Message from the portfolio",
-            html: generateEmailTemplate( email,  message),
-        })
+            html: generateEmailTemplate(email, message),
+        });
 
         return NextResponse.json({ message: "Mail Sent, Please check your inbox" }, { status: 200 });
         
     } catch (error) {
+        console.error('Full Error Details:', error);
         return NextResponse.json(
-            { error: `Internal Server Error: ${error}` },
+            { error: `Internal Server Error: ${error instanceof Error ? error.message : 'Unknown error'}` },
             { status: 500 }
         );
     }
