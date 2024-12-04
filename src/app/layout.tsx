@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
+import { Footer } from "@/sections/Footer";
 
 export const metadata: Metadata = {
   title: "My Portfolio",
@@ -30,6 +31,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Footer/>
       </body>
     </html>
   );

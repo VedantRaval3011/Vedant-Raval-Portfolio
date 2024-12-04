@@ -1,3 +1,4 @@
+"use client";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
 import StarIcon from "@/assets/icons/star.svg";
@@ -20,6 +21,8 @@ import JavaIcon from "@/assets/icons/java.svg";
 import NodeIcon from "@/assets/icons/node-js.svg";
 import VscodeIcon from "@/assets/icons/vscode.svg";
 import MongoDbIcon from "@/assets/icons/mongodb.svg";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const toolboxItems = [
   {
@@ -100,17 +103,27 @@ const hobbies = [
 ];
 
 export const AboutSection = () => {
+  const aboutRef = useRef(null);
+  const isInView = useInView(aboutRef, { amount: 0.3 });
+
   return (
-    <div className="py-20 lg:py-24">
+    <motion.div
+      ref={aboutRef}
+      initial={{ opacity: 0, y: -20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="py-20 lg:py-24"
+      id="about"
+    >
       <div>
         <SectionHeader
           eyebrow="About Me"
           title="Glimpse into my world"
           description="Learn more about me and know what I do and what inspires me"
         />
-        <div className="mt-20 mx-3 flex flex-col gap-6 lg:px-28">
+        <div className="mt-20 mx-3 flex flex-col gap-6 md:px-24 lg:px-28 ">
           <Card>
-            <div className="flex justify-center items-center text-center ">
+            <div className="flex justify-center items-center text-center">
               <CardHeader
                 title="My Arsenal"
                 description="Explore the technequies and tools that I use to craft
@@ -118,19 +131,19 @@ export const AboutSection = () => {
               />
             </div>
 
-            <div className="flex flex-wrap w-full mt-5 justify-center gap-4 lg:gap-6 lg:w-[50rem] lg:mx-auto ">
+            <div className="flex flex-wrap w-full mt-5 justify-center gap-2 lg:gap-6 lg:w-[50rem] lg:mx-auto ">
               {toolboxItems.map((item) => (
                 <div
                   key={item.title}
-                  className="basis-1/2 md:basis-0 flex justify-center items-center mt-1 "
+                  className="basis-[calc(50%-16px)] md:basis-0 flex justify-center items-center mt-1 "
                 >
                   <TechIcon component={item.iconType} />
                 </div>
               ))}
             </div>
           </Card>
-          <div className="lg:flex gap-5">
-            <Card>
+          <div className="lg:flex gap-5 ">
+            <Card >
               <div>
                 <div className="flex justify-center items-center text-center ">
                   <CardHeader
@@ -145,7 +158,7 @@ export const AboutSection = () => {
                     key={hobbie.title}
                     className={`bg-gradient-to-r mt-2 from-emerald-300 to-sky-400 text-center w-full p-3 rounded-2xl text-gray-700 font-serif md:basis-[calc(50%-16px)] lg:basis-0`}
                   >
-                    <span>{hobbie.title}</span> 
+                    <span>{hobbie.title}</span>
                     <span>{hobbie.emoji}</span>
                   </div>
                 ))}
@@ -166,6 +179,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

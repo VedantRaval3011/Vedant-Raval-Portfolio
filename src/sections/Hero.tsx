@@ -1,15 +1,27 @@
+"use client";
 import Image from "next/image";
-import memojiImage from "@/assets/images/memoji-computer.png";
 import RobotImage from "@/assets/images/robot.png";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import HeroOrbit from "@/components/HeroOrbit";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 
 export const HeroSection = () => {
+  const heroRef = useRef(null);
+  const isInView = useInView(heroRef, { amount: 0.1 });
   return (
-    <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
+    <motion.div
+      ref={heroRef}
+      initial={{ opacity: 0, y: -20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
+      id="home"
+    >
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
@@ -25,13 +37,19 @@ export const HeroSection = () => {
         <HeroOrbit size={550} rotation={20}>
           <StarIcon className="size-12 text-emerald-300 " />
         </HeroOrbit>
+        <HeroOrbit size={562} rotation={-130}>
+          <StarIcon className="size-12 text-emerald-300 " />
+        </HeroOrbit>
         <HeroOrbit size={590} rotation={142}>
+          <StarIcon className="size-8 text-emerald-300 " />
+        </HeroOrbit>
+        <HeroOrbit size={600} rotation={-142}>
           <StarIcon className="size-8 text-emerald-300 " />
         </HeroOrbit>
         <HeroOrbit size={430} rotation={-15}>
           <SparkleIcon className="size-8 text-emerald-300/20 " />
         </HeroOrbit>
-        <HeroOrbit size={440} rotation={80}>
+        <HeroOrbit size={480} rotation={80}>
           <SparkleIcon className="size-5 text-emerald-300/20 " />
         </HeroOrbit>
         <HeroOrbit size={530} rotation={178}>
@@ -58,7 +76,9 @@ export const HeroSection = () => {
             className="size-[100px] shadow-lg rounded-full mb-1 bg-gradient-to-r from-emerald-300 to-sky-400"
           />
           <div className="bg-gray-950 border-gray-800 px-4 py-1.5 inline-flex z-20  items-center gap-4 rounded-lg">
-            <div className="bg-green-500 size-2.5 rounded-full"></div>
+            <div className="bg-green-500 size-2.5 rounded-full relative">
+              <div className="inset-0 bg-green-500 animate-ping-large absolute rounded-full"></div>
+            </div>
             <div className="text-sm font-semibold">
               Available for new projects
             </div>
@@ -74,17 +94,20 @@ export const HeroSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center mt-8 gap-4">
-          <button className="inline-flex items-center gap-2 border-white/15 px-6 h-12 rounded-xl">
+        <div className="flex flex-col md:flex-row items-center justify-center mt-8 gap-4 z-50">
+          <Link
+            href="#projects"
+            className="inline-flex items-center gap-2 border-white/15 px-6 h-12 rounded-xl "
+          >
             <span className="font-semibold">Explore my work</span>
             <ArrowDown className="size-4" />
-          </button>
-          <button className="inline-flex items-center gap-2 border-white bg-white h-12 px-6 rounded-xl text-gray-900">
+          </Link>
+          <button className="inline-flex items-center gap-2 border-white bg-white h-12 px-6 rounded-xl text-gray-900 cursor-pointer">
             <span>👋</span>
             <span className="font-semibold">Let's Connect</span>
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

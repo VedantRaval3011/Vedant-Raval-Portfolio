@@ -1,6 +1,5 @@
-import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
@@ -8,6 +7,8 @@ import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import MechvaccPage from "@/assets/images/Mechvacc.png";
 import NaturalistPage from "@/assets/images/naturalist.png";
 import IsroPage from "@/assets/images/isro.png";
+import { useRef } from "react";
+import { useInView, motion } from "framer-motion";
 
 const portfolioProjects = [
   {
@@ -15,11 +16,11 @@ const portfolioProjects = [
     year: "2024",
     title: "Mechvacc Industries Official Website",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Enhanced user experience by 50%" },
+      { title: "Increased traffic by 35%" },
+      { title: "Complete admin portal for product handling" },
     ],
-    link: "https://youtu.be/4k7IdSLxh6w",
+    link: "",
     image: MechvaccPage,
   },
   {
@@ -27,11 +28,11 @@ const portfolioProjects = [
     year: "2024",
     title: "Raster Interactive Data Management System (RIDaM)",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "100+ active admin users" },
+      { title: "Complete admin portal for data handling" },
+      { title: "Received a Letter of Recommendation for my work" },
     ],
-    link: "https://youtu.be/Z7I5uSRHMHg",
+    link: "",
     image: IsroPage,
   },
   {
@@ -39,18 +40,27 @@ const portfolioProjects = [
     year: "2024",
     title: "Naturalist Animated Landing Page",
     results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
+      { title: "One of my personal project" },
+      { title: "Shows the frontend skills" },
+      { title: "Outstanding and eye catching animations" },
     ],
-    link: "https://youtu.be/7hi5zwO75yc",
+    link: "https://naturalist.vercel.app/",
     image: NaturalistPage,
   },
 ];
 
 export const ProjectsSection = () => {
+  const projectRef = useRef(null);
+  const isInView = useInView(projectRef, { amount: 0.1 });
   return (
-    <section className="pb-16 lg:py-24">
+    <motion.section
+      ref={projectRef}
+      initial={{ opacity: 0, y: -20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="pb-16 lg:py-24"
+      id="projects"
+    >
       <div className="container">
         <div className="flex justify-center">
           <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-transparent bg-clip-text">
@@ -88,15 +98,23 @@ export const ProjectsSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link href={project.link}>
+                  {project.link ? <Link href={project.link}>
                     <button
                       className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex
-                 items-center justify-center gap-2 mt-8"
+                 items-center justify-center gap-2 mt-8 cursor-pointer"
                     >
                       <span>Visit Live Site</span>
                       <ArrowUpRightIcon />
                     </button>
-                  </Link>
+                  </Link> : <Link href={project.link}>
+                    <button
+                      className="bg-white/60 text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex
+                 items-center justify-center gap-2 mt-8 cursor-pointer"
+                    >
+                      <span>Link will be Available soon</span>
+                      {/* <ArrowUpRightIcon /> */}
+                    </button>
+                  </Link>}
                 </div>
                 <div className="relative">
                   <Image
@@ -110,6 +128,6 @@ export const ProjectsSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
