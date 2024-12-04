@@ -5,8 +5,8 @@ import { twMerge } from "tailwind-merge";
 import { Footer } from "@/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Created with the help of Frontend Tribe",
+  title: "Vedant Raval",
+  description: "Created by Vedant Raval",
 };
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
