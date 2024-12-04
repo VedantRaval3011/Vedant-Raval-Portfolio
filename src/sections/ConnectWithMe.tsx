@@ -41,7 +41,7 @@ const ConnectWithMe = () => {
           </h1>
           <p className="text-md text-center md:text-left max-w-96 lg:text-lg lg:max-w-[35rem] lg:mt-2">
             Feel free to connect with me for job opportunities, freelance
-            projects, or collaborations. Let's build something amazing together!
+            projects, or collaborations. Let&apos;s build something amazing together!
           </p>
         </div>
         <div className="flex justify-between">
